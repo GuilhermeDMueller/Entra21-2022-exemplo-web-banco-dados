@@ -1,10 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Entra21.CSharp.ClinicaVeterinaria.Service;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Entra21.CSharp.ClinicaVeterinaria.Aplication.Controllers
 {
     // Dois pontos Herança(mais para frente)
     public class RacaController : Controller
     {
+        private RacaService racaService;
+        // Construtor: objetivo construir o objeto de RacaControler, com o mínino
+        // necessário para o funcionário correto
+        public RacaController()
+        {
+            racaService = new RacaService();
+        }
         /// <summary>
         /// Endpoitn que permite listar todas as raças
         /// </summary>
@@ -31,6 +39,8 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplication.Controllers
             [FromQuery] string nome,
             [FromQuery] string especie)
         {
+            racaService.Cadastrar(nome, especie);
+        
             return RedirectToAction("Index");
         }
 
