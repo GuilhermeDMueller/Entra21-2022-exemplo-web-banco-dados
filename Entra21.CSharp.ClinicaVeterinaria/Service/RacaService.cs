@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Entra21.CSharp.ClinicaVeterinaria.Repositorio;
+using Entra21.CSharp.ClinicaVeterinaria.Repositorio.Entidades;
 
 namespace Entra21.CSharp.ClinicaVeterinaria.Service
 {
@@ -10,8 +7,21 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Service
     // ou seja, deverá honrar as clausulas definidas na interface(contrato)
     public class RacaService : IRacaService
     {
-        public void Cadastrar(string nome, string especie )
+        private RacaRepositorio racaRepositorio;
+
+        // Construir o objeto de RacaServico com o mínimo para a correta execução
+        public RacaService()
         {
+            racaRepositorio = new RacaRepositorio();
+        }
+        public void Cadastrar(string nome, string especie)
+        {
+            var raca = new Raca();
+            raca.Nome = nome;
+            raca.Especie = especie;
+
+            racaRepositorio.Cadastrar(raca);
+
             Console.WriteLine($"Nome: {nome} espécie: {especie}");
         }
     }
