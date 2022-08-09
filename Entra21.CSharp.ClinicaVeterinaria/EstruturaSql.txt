@@ -1,0 +1,5 @@
+Create Table racas(
+	id INTEGER PRIMARY KEY IDENTITY(1,1),
+	nome VarChar(100),
+	especie VARCHAR(40)
+);

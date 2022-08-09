@@ -1,4 +1,5 @@
-﻿using Entra21.CSharp.ClinicaVeterinaria.Service;
+﻿using Entra21.CSharp.ClinicaVeterinaria.Repositorio.BancoDados;
+using Entra21.CSharp.ClinicaVeterinaria.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Entra21.CSharp.ClinicaVeterinaria.Aplication.Controllers
@@ -9,9 +10,9 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplication.Controllers
         private RacaService racaService;
         // Construtor: objetivo construir o objeto de RacaControler, com o mínino
         // necessário para o funcionário correto
-        public RacaController()
+        public RacaController(ClinicaVeterinariaContexto contexto)
         {
-            racaService = new RacaService();
+            racaService = new RacaService(contexto);
         }
         /// <summary>
         /// Endpoitn que permite listar todas as raças
@@ -40,7 +41,7 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplication.Controllers
             [FromQuery] string especie)
         {
             racaService.Cadastrar(nome, especie);
-        
+
             return RedirectToAction("Index");
         }
 
