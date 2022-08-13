@@ -18,12 +18,17 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Service
 
         public void Alterar(int id, string nome, string especie)
         {
-            throw new NotImplementedException();
+            var raca = new Raca();
+            raca.Id = id;
+            raca.Nome = nome.Trim();
+            raca.Especie = especie;
+
+            _racaRepositorio.Atualizar(raca);
         }
 
         public void Apagar(int id)
         {
-            throw new NotImplementedException();
+            _racaRepositorio.Apagar(id);
         }
 
         public void Cadastrar(string nome, string especie)
@@ -39,7 +44,9 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Service
 
         public Raca ObterPorId(int id)
         {
-            throw new NotImplementedException();
+            var raca = _racaRepositorio.ObterPorId(id);
+
+            return raca;
         }
 
         public List<Raca> ObterTodos()
