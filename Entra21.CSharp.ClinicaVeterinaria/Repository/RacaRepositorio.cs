@@ -30,13 +30,14 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Repositorio
 
         public void Cadastrar(Raca raca)
         {
-            Console.WriteLine($"Rep: Nome: {raca.Nome} Espécie: {raca.Especie}");
+            //Console.WriteLine($"Rep: Nome: {raca.Nome} Espécie: {raca.Especie}");
+            _contexto.Racas.Add(raca);
+            _contexto.SaveChanges();
         }
 
         public Raca ObterPorId(int id)
         {
             var raca = _contexto.Racas.Where(x => x.Id == id).FirstOrDefault();
-
             return raca;
         }
 
@@ -45,7 +46,6 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Repositorio
             // Buscar todos os registros de raças
             // SELECT * FROM racas
             var racas = _contexto.Racas.ToList();
-
             return racas;
         }
     }
