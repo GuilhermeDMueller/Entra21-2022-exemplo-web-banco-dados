@@ -1,6 +1,7 @@
 ﻿using Entra21.CSharp.ClinicaVeterinaria.Repositorio.BancoDados;
 using Entra21.CSharp.ClinicaVeterinaria.Repositorio.Enums;
 using Entra21.CSharp.ClinicaVeterinaria.Service;
+using Entra21.CSharp.ClinicaVeterinaria.Service.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Entra21.CSharp.ClinicaVeterinaria.Aplication.Controllers
@@ -8,7 +9,7 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplication.Controllers
     // Dois pontos Herança(mais para frente)
     public class RacaController : Controller
     {
-        private readonly RacaService _racaService;
+        private readonly IRacaService _racaService;
         // Construtor: objetivo construir o objeto de RacaControler, com o mínino
         // necessário para o funcionário correto
         public RacaController(ClinicaVeterinariaContexto contexto)
@@ -31,8 +32,8 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplication.Controllers
             return View("Index");
         }
 
-        [Route("/raca/cadastrar")]
-        [HttpGet]
+        //[Route("/raca/cadastrar")]
+        [HttpGet("/raca/cadastrar")]
 
         public IActionResult Cadastrar()
         {
@@ -46,10 +47,9 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplication.Controllers
         [Route("/raca/cadastrar")]
         [HttpPost]
         public IActionResult Cadastrar(
-            [FromForm] string nome,
-            [FromForm] string especie)
+            [FromForm]RacaCadastrarViewModel racaCadastrarViewModel)
         {
-            _racaService.Cadastrar(nome, especie);
+            _racaService.Cadastrar(racaCadastrarViewModel);
 
             return RedirectToAction("Index");
         }
@@ -78,12 +78,9 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplication.Controllers
 
         [HttpPost]
         [Route("/raca/editar")]
-        public IActionResult Editar(
-            [FromForm] int id,
-            [FromForm] string nome,
-            [FromForm] string especie)
+        public IActionResult Editar([FromForm] RacaEditarViewModel racaEditarViewModel)
         {
-            _racaService.Editar(id, nome, especie);
+            _racaService.Editar(racaEditarViewModel);
 
             return RedirectToAction("Index");
         }
