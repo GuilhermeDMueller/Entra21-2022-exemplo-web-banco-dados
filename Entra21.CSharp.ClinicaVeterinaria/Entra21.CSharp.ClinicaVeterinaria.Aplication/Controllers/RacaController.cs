@@ -25,7 +25,7 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplication.Controllers
         public IActionResult ObterTodos()
         {
             var racas = _racaService.ObterTodos();
-            |sdfgh
+
             // Passar informação do C# para o html
             ViewBag.Racas = racas;
 
@@ -41,14 +41,27 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplication.Controllers
 
             ViewBag.Especies = especies;
 
+            ViewBag.Especies = ObterEspecies();
+
+            var racaCadastrarViewModel = new RacaCadastrarViewModel();
+
             return View();
         }
 
         [Route("/raca/cadastrar")]
         [HttpPost]
         public IActionResult Cadastrar(
-            [FromForm]RacaCadastrarViewModel racaCadastrarViewModel)
+            [FromForm] RacaCadastrarViewModel racaCadastrarViewModel)
         {
+            // Valida o parâmetro recebido na Action se é inválido
+            if (!ModelState.IsValid)
+
+            {
+                ViewBag.Especies = ObterEspecies();
+
+                return View(racaCadastrarViewModel);
+            }
+
             _racaService.Cadastrar(racaCadastrarViewModel);
 
             return RedirectToAction("Index");
@@ -56,7 +69,7 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplication.Controllers
         [Route("/raca/apagar")]
         [HttpGet]
         // https://localhost:porta/raca/apagar?id=4
-        public IActionResult Apagar([FromQuery]int id)
+        public IActionResult Apagar([FromQuery] int id)
         {
             _racaService.Apagar(id);
 
@@ -65,7 +78,7 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplication.Controllers
 
         [HttpGet]
         [Route("/raca/editar")]
-        public IActionResult Editar([FromQuery]int id)
+        public IActionResult Editar([FromQuery] int id)
         {
             var raca = _racaService.ObterPorId(id);
             var especies = ObterEspecies();
