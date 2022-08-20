@@ -54,7 +54,6 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplication.Controllers
             [FromForm] RacaCadastrarViewModel racaCadastrarViewModel)
         {
             // Valida o parâmetro recebido na Action se é inválido
-            //if (ModelState.IsValid == false)
             if (!ModelState.IsValid)
 
             {
