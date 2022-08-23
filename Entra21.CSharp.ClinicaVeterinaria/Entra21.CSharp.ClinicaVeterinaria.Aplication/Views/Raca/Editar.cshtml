@@ -1,31 +1,27 @@
-﻿@*@using Entra21.CSharp.ClinicaVeterinaria.Repositorio.Entidades
+﻿@model Entra21.CSharp.ClinicaVeterinaria.Service.ViewModels.RacaEditarViewModel
 @{
-    var raca = ViewBag.Raca as Raca;
-    var especies = ViewBag.Especies as List<string>;
-}
-<h3>Editar Raça</h3>
+	var especies = ViewBag.Especies as List<string>;
+	especies.Add(string.Empty);
 
-<form action="/raca/editar" method="post">
-    <input type="hidden" name="id" value="@raca.Id" />
-    <div>
-        <label for="campo_nome" class="form-label">
-            Nome<span class="text-danger fn-bold">*</span>
-        </label>
-        <input type="text" id="campo_nome" name="nome" class="form-control" required="required" value="@raca.Nome" />
-    </div>
-    <div class="mb-3">
-        <label for="campo_especie" class="form-label">
-            Espécie<span calss="text-danger fw bold">*</span>
-        </label>
-        <select id="campo_especie" name="especie" class="form-select" required="required">
-            @foreach (var especie in especies)
-            {
-                <option value="@especie" @(especie == raca.Especie ? "selected" : "")>@especie</option>
-            }
-        </select>
-    </div>
-    <div class="text-end">
-        <a href="/raca" class="btn btn-outline-danger">Cancelar</a>
-        <button type="submit" class="btn btn-success">Salvar</button>
-    </div>
-</form>*@
+	var selectDasEspecies = new SelectList(especies, string.Empty);
+}
+<h3>Cadastro de Raça</h3>
+
+<form asp-action="editar" method="post">
+	<input type="hidden" asp-for="Id" />
+	<div>
+		<label asp-for="Nome" class="form-label" />Nome
+		<input asp-for="Nome" class="form-select"/>
+		<span asp-validation-for="Nome" class="text-danger"></span>
+	</div>
+	<div class="mb-3">
+		<label asp-for="Especie" class="form-label">Espécie</label>
+		<select asp-for="Especie" asp-items="selectDasEspecies" class="form-select" required="required">
+			<option selected="selected" disabled="disebled" value="">Selecione uma opção</option>
+		</select>
+	</div>
+	<div class="text-end">
+		<a href="/raca" class="btn btn-outline-danger">Cancelar</a>
+		<button type="submit" class="btn btn-success">Salvar</button>
+	</div>
+</form>
