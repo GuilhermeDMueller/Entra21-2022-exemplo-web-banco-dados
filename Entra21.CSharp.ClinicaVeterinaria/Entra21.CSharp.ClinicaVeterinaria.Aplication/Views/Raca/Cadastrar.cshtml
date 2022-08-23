@@ -10,7 +10,7 @@
 <form asp-action="cadastrar" method="post">
 	<div>
 		<label asp-for="Nome" class="form-label" />Nome
-		<select asp-for="Nome" asp-items="form-control" class="form-select"></select>
+		<input asp-for="Nome" class="form-select"/>
 		<span asp-validation-for="Nome" class="text-danger"></span>
 	</div>
 	<div class="mb-3">
