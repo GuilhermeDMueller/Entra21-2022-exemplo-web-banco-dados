@@ -1,4 +1,4 @@
-﻿namespace Entra21.CSharp.ClinicaVeterinaria.Service.ViewModels
+﻿namespace Entra21.CSharp.ClinicaVeterinaria.Service.ViewModels.Racas
 {
     public class RacaEditarViewModel : RacaViewModel
     {

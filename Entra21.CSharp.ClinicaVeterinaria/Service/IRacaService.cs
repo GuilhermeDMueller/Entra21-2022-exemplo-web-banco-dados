@@ -1,5 +1,5 @@
 ﻿using Entra21.CSharp.ClinicaVeterinaria.Repositorio.Entidades;
-using Entra21.CSharp.ClinicaVeterinaria.Service.ViewModels;
+using Entra21.CSharp.ClinicaVeterinaria.Service.ViewModels.Racas;
 
 namespace Entra21.CSharp.ClinicaVeterinaria.Service
 {

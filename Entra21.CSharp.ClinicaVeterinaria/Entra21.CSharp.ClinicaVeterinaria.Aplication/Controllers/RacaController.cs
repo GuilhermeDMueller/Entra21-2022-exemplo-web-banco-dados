@@ -1,7 +1,6 @@
-﻿using Entra21.CSharp.ClinicaVeterinaria.Repositorio.BancoDados;
-using Entra21.CSharp.ClinicaVeterinaria.Repositorio.Enums;
+﻿using Entra21.CSharp.ClinicaVeterinaria.Repositorio.Enums;
 using Entra21.CSharp.ClinicaVeterinaria.Service;
-using Entra21.CSharp.ClinicaVeterinaria.Service.ViewModels;
+using Entra21.CSharp.ClinicaVeterinaria.Service.ViewModels.Racas;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Entra21.CSharp.ClinicaVeterinaria.Aplication.Controllers
@@ -12,9 +11,9 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplication.Controllers
         private readonly IRacaService _racaService;
         // Construtor: objetivo construir o objeto de RacaControler, com o mínino
         // necessário para o funcionário correto
-        public RacaController(ClinicaVeterinariaContexto contexto)
+        public RacaController(IRacaService racaService)
         {
-            _racaService = new RacaService(contexto);
+            _racaService = racaService;
         }
         /// <summary>
         /// Endpoitn que permite listar todas as raças

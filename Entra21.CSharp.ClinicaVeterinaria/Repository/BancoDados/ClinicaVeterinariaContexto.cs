@@ -7,6 +7,7 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Repositorio.BancoDados
     public class ClinicaVeterinariaContexto : DbContext
     {
         public DbSet<Raca> Racas { get; set; }
+        public DbSet<Veterinario> Veterinarios { get; set; }
 
         public ClinicaVeterinariaContexto(DbContextOptions<ClinicaVeterinariaContexto> 
             options) : base(options)
@@ -26,7 +27,9 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Repositorio.BancoDados
             *      - Executar comando para aplicar a migration sem a necessidade de executar a aplicação
             *          dotnet ef database update
             *      - Executar a aplicação irá aplicar a migration */
+            
             modelBuilder.ApplyConfiguration(new RacaMapeamento());
+            modelBuilder.ApplyConfiguration(new VeterinarioMapeamento());
         }
     }
 }
